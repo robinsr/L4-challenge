@@ -3,20 +3,15 @@
  */
 
 import View from './view';
-import Service from './service';
+import fetchData from './service';
 import { $on } from './util';
 
 class App {
-  constructor() {
-    this.service = new Service();
+  init() {
     this.view = new View();
-  }
-
-  init = () => {
-    this.service.fetchData()
+    fetchData()
       .then(data => {
         this.view.render(data);
-        console.log(data)
       })
       .catch(err => {
         console.error(err);
